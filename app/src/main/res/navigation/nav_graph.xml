@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/signInFragment">
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.example.testapp.ui.signIn.SignInFragment"
+        android:label="SignInFragment">
+        <action
+            android:id="@+id/action_signInFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/signInFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/logInFragment"
+        android:name="com.example.testapp.ui.logIn.LogInFragment"
+        android:label="LogInFragment">
+        <action
+            android:id="@+id/action_logInFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/signInFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.testapp.ui.main.MainFragment"
+        android:label="MainFragment" />
+</navigation>
