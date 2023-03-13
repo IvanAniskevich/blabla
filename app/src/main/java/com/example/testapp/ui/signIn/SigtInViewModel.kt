@@ -1,7 +1,9 @@
 package com.example.testapp.ui.signIn
 
-import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.testapp.data.user.UserModel
 import com.example.testapp.domain.UserRepo
 import kotlinx.coroutines.launch
@@ -27,25 +29,21 @@ class SigtInViewModel(private val repo: UserRepo) : ViewModel() {
         )
         viewModelScope.launch {
             val isExist = isUserExist(user.email)
-            Log.v("wtf", "add user isHav = $isExist")
             if (isExist == false) {
                 createUser(user)
-               _isAdded.value = true
-                Log.v("wtf", "true isAdded value = ${_isAdded.value}")
+                _isAdded.value = true
             } else {
                 _isAdded.value = false
-                Log.v("wtf", "false isAdded value = ${_isAdded.value}")
             }
         }
     }
 
     private suspend fun createUser(user: UserModel) {
-            repo.insertUser(user)
+        repo.insertUser(user)
     }
 
     private suspend fun isUserExist(email: String): Boolean {
         val user = repo.getUserByEmail(email)
-        Log.v("wtf", "isHavUser = $user")
         return user != null
     }
 }

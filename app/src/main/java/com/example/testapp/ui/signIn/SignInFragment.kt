@@ -2,7 +2,6 @@ package com.example.testapp.ui.signIn
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,17 +39,16 @@ class SignInFragment : Fragment() {
         }
         binding.signIn.setOnClickListener { reg() }
         vieModel.isAdded.observe(this.viewLifecycleOwner, { value ->
-            Log.v("wtf", "observe is added = $value")
             if (value == true) {
                 navigateToMain()
             } else {
-                Toast.makeText(requireContext(), "You hav ac", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "account already exist", Toast.LENGTH_SHORT).show()
             }
         })
-        binding.googleText.setOnClickListener{
+        binding.googleText.setOnClickListener {
             findNavController().navigate(R.id.action_signInFragment_to_mainFragment)
         }
-        binding.appleText.setOnClickListener{
+        binding.appleText.setOnClickListener {
             findNavController().navigate(R.id.action_signInFragment_to_mainFragment)
         }
     }
@@ -61,7 +59,7 @@ class SignInFragment : Fragment() {
         val lastName = binding.lastName.text.toString()
         val email = binding.email.text.toString()
         if (email.isEmpty() || firstName.isEmpty() || lastName.isEmpty()) {
-            Toast.makeText(requireContext(), "some field empty", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "some field is empty", Toast.LENGTH_SHORT).show()
         } else {
             if (email.trim { it <= ' ' }.matches(emailPattern.toRegex())) {
                 vieModel.addUser(firstName, lastName, email)
@@ -71,7 +69,7 @@ class SignInFragment : Fragment() {
 
     private fun navigateToMain() {
         val edit = sharedPref().edit()
-        with(edit){
+        with(edit) {
             putString(key, binding.email.text.toString())
             apply()
         }

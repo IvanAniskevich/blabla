@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.testapp.R
-import com.example.testapp.data.RetrofitInstance
 import com.example.testapp.data.api.CategoriesModel
 import com.example.testapp.data.api.FlashSaleModel
 import com.example.testapp.data.api.LatestModel
@@ -26,7 +25,6 @@ class Page1ViewModel( private val repo : ApiRepo): ViewModel() {
 
     init {
         getData()
-        Log.v("wtf", "init")
     }
 
     private fun getData(){
@@ -42,7 +40,6 @@ class Page1ViewModel( private val repo : ApiRepo): ViewModel() {
         }
     }
 
-
     private fun setCategories() :List<CategoriesModel> =
         listOf(
             CategoriesModel(R.drawable.ic_launcher_foreground, "text"),
@@ -52,7 +49,4 @@ class Page1ViewModel( private val repo : ApiRepo): ViewModel() {
             CategoriesModel(R.drawable.ic_launcher_foreground, "text"),
             CategoriesModel(R.drawable.ic_launcher_foreground, "text"),
         )
-
-
-
 }

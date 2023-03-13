@@ -1,14 +1,12 @@
 package com.example.testapp.ui.page1
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.testapp.R
 import com.example.testapp.databinding.Page1FragmentBinding
 import com.example.testapp.ui.page1.adapters.CategoriesAdapter
@@ -20,7 +18,7 @@ class Page1Fragment : Fragment(), FlashSaleAdapter.OnitemClick {
 
     private var _binding: Page1FragmentBinding? = null
     private val binding get() = _binding!!
-    private val viewModel :Page1ViewModel by viewModel<Page1ViewModel>()
+    private val viewModel: Page1ViewModel by viewModel<Page1ViewModel>()
     private val latestAdapter = LatestAdapter()
     private val flashSaleAdapter = FlashSaleAdapter(this)
     private val categoriesAdapter = CategoriesAdapter()
@@ -42,7 +40,6 @@ class Page1Fragment : Fragment(), FlashSaleAdapter.OnitemClick {
         binding.recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         viewModel.listOfCategories.observe(this.viewLifecycleOwner, { list ->
-            Log.v("wtf", "observe list of categories = $list")
             list.let { categoriesAdapter.setList(list) }
         })
 
@@ -50,7 +47,6 @@ class Page1Fragment : Fragment(), FlashSaleAdapter.OnitemClick {
         binding.recyclerView2.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         viewModel.listOfLatestModel.observe(this.viewLifecycleOwner, { list ->
-            Log.v("wtf", "observe list of latest model = $list")
             list.let { latestAdapter.setList(list) }
         })
 
@@ -58,7 +54,6 @@ class Page1Fragment : Fragment(), FlashSaleAdapter.OnitemClick {
         binding.recyclerView3.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         viewModel.listOfFlashSaleModel.observe(this.viewLifecycleOwner, { list ->
-            Log.v("wtf", "observe list of flash sale = $list")
             list.let { flashSaleAdapter.setList(list) }
         })
     }

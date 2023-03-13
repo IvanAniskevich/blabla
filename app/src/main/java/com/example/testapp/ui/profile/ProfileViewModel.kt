@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.testapp.R
-import com.example.testapp.data.api.CategoriesModel
 import com.example.testapp.data.user.UserModel
 import com.example.testapp.domain.UserRepo
 import kotlinx.coroutines.launch
@@ -21,9 +20,10 @@ class ProfileViewModel(private val repo: UserRepo) : ViewModel() {
     init {
         _listOfData.value = setList()
     }
-    fun getUser(email:String){
+
+    fun getUser(email: String) {
         viewModelScope.launch {
-          _currentUser.value = repo.getUserByEmail(email)
+            _currentUser.value = repo.getUserByEmail(email)
         }
     }
 
@@ -71,6 +71,5 @@ class ProfileViewModel(private val repo: UserRepo) : ViewModel() {
                 text2 = null,
                 ic2 = null
             ),
-
-            )
+        )
 }
