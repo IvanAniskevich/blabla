@@ -1,5 +1,6 @@
 package com.example.testapp.ui.logIn
 
+import android.content.Context
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
@@ -21,6 +22,7 @@ class LogInFragment : Fragment() {
     private val vieModel: LogInViewModel by viewModel<LogInViewModel>()
 
     var passwordVisibility = true
+    private val key = "current user"
 
 
     override fun onCreateView(
@@ -67,6 +69,12 @@ class LogInFragment : Fragment() {
     }
 
     private fun navigate() {
+        val edit =  requireActivity().getPreferences(Context.MODE_PRIVATE).edit()
+        with(edit) {
+            putString(key, binding.email.text.toString())
+            apply()
+        }
+
         findNavController().navigate(R.id.action_logInFragment_to_mainFragment)
     }
 }
